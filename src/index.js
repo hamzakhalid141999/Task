@@ -1,17 +1,40 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { useReactToPrint } from 'react-to-print';
+import React, { useRef } from 'react';
+import { render } from '@testing-library/react';
+import Header from "./Components/header";
+import Footer from "./Components/footer";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+class ComponentToPrint extends React.Component {
+  render() {
+    return (
+      <>
+      <App/>
+      </>
+    );
+  }
+}
+
+const Example=()=>{
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content:()=>componentRef.current,
+  });
+
+  return(
+    <div>
+      <ComponentToPrint ref={componentRef} />
+      <button className="print__btn" onClick={handlePrint}>Print</button>
+    </div>
+  );
+};
+
+render(<Example/>, document.querySelector("#root"));
+
+
