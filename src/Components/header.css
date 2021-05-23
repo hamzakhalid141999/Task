@@ -1,0 +1,15 @@
+.header {
+  height: 60px;
+  background-color: rgb(167, 39, 39);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding-top: 35px;
+}
+.header__text {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+}
